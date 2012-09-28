@@ -14,6 +14,10 @@ public class Balloon
 	private Graphics g;
 	private int size = 100;
 	private int step = 15;
+	private boolean upPressed = false;
+	private boolean downPressed = false;
+	private boolean leftPressed = false;
+	private boolean rightPressed = false;
 	
 	public Balloon(int x, int y, Color c)
 	{
@@ -24,6 +28,7 @@ public class Balloon
 	
 	public void paint(Graphics g)
 	{
+		move();
 		this.g = g;
 		g.setColor(ropeColor);
 		g.drawLine(x, y + size / 6 * 3, x + size / 3, y + size / 3 * 4);
@@ -32,6 +37,14 @@ public class Balloon
 		g.fillRect(x + size / 3, y + size / 3 * 4, size / 3, size / 3);
 		g.setColor(mainColor);
 		g.fillOval(x, y, size, size);
+	}
+	
+	public void move()
+	{
+		if(upPressed) y = y - step;
+		if(downPressed) y = y + step;
+		if(leftPressed) x = x - step;
+		if(rightPressed) x = x + step;
 	}
 	
 	public void repaint()
@@ -47,24 +60,24 @@ public class Balloon
 		size = r.nextInt();
 	}
 	
-	public void up()
+	public void up(boolean pressed)
 	{
-		y = y - step;
+		upPressed = pressed;
 	}
 
-	public void down()
+	public void down(boolean pressed)
 	{
-		y = y + step;
+		downPressed = pressed;
 	}
 
-	public void right()
+	public void right(boolean pressed)
 	{
-		x = x + step;
+		rightPressed = pressed;
 	}
 
-	public void left()
+	public void left(boolean pressed)
 	{
-		x = x - step;
+		leftPressed = pressed;
 	}
 	
 }

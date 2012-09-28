@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-public class BalloonController extends Applet implements KeyListener
+public class BalloonController extends Applet implements KeyListener, Runnable
 {
 
 	Balloon balloon1;
@@ -15,6 +15,7 @@ public class BalloonController extends Applet implements KeyListener
 	BombsCounter counter1;
 	BombsCounter counter2;
 	Lava lava;
+	Thread clockThread;
 	
 	List<Canvas> canvasObjects;
 	
@@ -30,6 +31,21 @@ public class BalloonController extends Applet implements KeyListener
 		//canvasObjects.add(lava);
 	}
 	
+	public void start()
+	{
+		if (clockThread == null)
+		{
+	        clockThread = new Thread(this, "Clock");
+	        clockThread.start();
+	    }
+	}
+	
+	public void stop()
+	{
+	    clockThread.stop();
+	    clockThread = null;
+	}
+	
 	private static final long serialVersionUID = 7201997499909924120L;
 
 	public void paint(Graphics g)
@@ -39,6 +55,7 @@ public class BalloonController extends Applet implements KeyListener
 		counter1.paint(g);
 		counter2.paint(g);
 		lava.paint(g);
+		System.out.println("repaint");
 	}
 
 	@Override
@@ -48,31 +65,30 @@ public class BalloonController extends Applet implements KeyListener
 		switch(key)
 		{
 			case "W":
-				balloon1.up();
+				balloon1.up(true);
 				break;
 			case "D":
-				balloon1.right();
+				balloon1.right(true);
 				break;
 			case "S":
-				balloon1.down();
+				balloon1.down(true);
 				break;
 			case "A":
-				balloon1.left();
+				balloon1.left(true);
 				break;
 			case "I":
-				balloon2.up();
+				balloon2.up(true);
 				break;
 			case "L":
-				balloon2.right();
+				balloon2.right(true);
 				break;
 			case "K":
-				balloon2.down();
+				balloon2.down(true);
 				break;
 			case "J":
-				balloon2.left();
+				balloon2.left(true);
 				break;
 		}
-		repaint();
 	}
 
 	@Override
@@ -83,6 +99,46 @@ public class BalloonController extends Applet implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
+		String key = KeyEvent.getKeyText(e.getKeyCode());
+		switch(key)
+		{
+			case "W":
+				balloon1.up(false);
+				break;
+			case "D":
+				balloon1.right(false);
+				break;
+			case "S":
+				balloon1.down(false);
+				break;
+			case "A":
+				balloon1.left(false);
+				break;
+			case "I":
+				balloon2.up(false);
+				break;
+			case "L":
+				balloon2.right(false);
+				break;
+			case "K":
+				balloon2.down(false);
+				break;
+			case "J":
+				balloon2.left(false);
+				break;
+		}
+	}
+
+	@Override
+	public void run()
+	{
+	    while (clockThread != null) {
+	        repaint();
+	        try {
+	            clockThread.sleep(300);
+	        } catch (InterruptedException e){
+	        }
+	    }
 	}
 
 }
