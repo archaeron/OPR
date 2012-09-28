@@ -10,12 +10,13 @@ import java.util.List;
 public class BalloonController extends Applet implements KeyListener, Runnable
 {
 
-	Balloon balloon1;
-	Balloon balloon2;
-	BombsCounter counter1;
-	BombsCounter counter2;
-	Lava lava;
-	Thread clockThread;
+	private static final int sleeptime = 250;
+	private Balloon balloon1;
+	private Balloon balloon2;
+	private BombsCounter counter1;
+	private BombsCounter counter2;
+	private Lava lava;
+	private Thread clockThread;
 	
 	List<Canvas> canvasObjects;
 	
@@ -135,7 +136,7 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	    while (clockThread != null) {
 	        repaint();
 	        try {
-	            clockThread.sleep(300);
+	            clockThread.sleep(sleeptime);
 	        } catch (InterruptedException e){
 	        }
 	    }
