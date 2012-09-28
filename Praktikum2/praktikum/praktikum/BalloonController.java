@@ -5,18 +5,29 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 public class BalloonController extends Applet implements KeyListener
 {
 
 	Balloon balloon1;
 	Balloon balloon2;
+	BombsCounter counter1;
+	BombsCounter counter2;
+	Lava lava;
+	
+	List<Canvas> canvasObjects;
 	
 	public BalloonController()
 	{
 		addKeyListener(this);
 		balloon1 = new Balloon(100, 50, Color.red);
 		balloon2 = new Balloon(50, 100, Color.blue);
+		counter1 = new BombsCounter(0, 0);
+		counter2 = new BombsCounter(550, 0);
+		lava = new Lava();
+		//canvasObjects = new List<Canvas>();
+		//canvasObjects.add(lava);
 	}
 	
 	private static final long serialVersionUID = 7201997499909924120L;
@@ -25,6 +36,9 @@ public class BalloonController extends Applet implements KeyListener
 	{
 		balloon1.paint(g);
 		balloon2.paint(g);
+		counter1.paint(g);
+		counter2.paint(g);
+		lava.paint(g);
 	}
 
 	@Override
@@ -33,33 +47,32 @@ public class BalloonController extends Applet implements KeyListener
 		String key = KeyEvent.getKeyText(e.getKeyCode());
 		switch(key)
 		{
-			case "Up":
+			case "W":
 				balloon1.up();
 				break;
-			case "Right":
+			case "D":
 				balloon1.right();
 				break;
-			case "Down":
+			case "S":
 				balloon1.down();
 				break;
-			case "Left":
+			case "A":
 				balloon1.left();
 				break;
-			case "W":
+			case "I":
 				balloon2.up();
 				break;
-			case "D":
+			case "L":
 				balloon2.right();
 				break;
-			case "S":
+			case "K":
 				balloon2.down();
 				break;
-			case "A":
+			case "J":
 				balloon2.left();
 				break;
 		}
 		repaint();
-
 	}
 
 	@Override
