@@ -18,12 +18,18 @@ public class Balloon
 	private boolean downPressed = false;
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
+	private BombsCounter bombsCounter;
 	
 	public Balloon(int x, int y, Color c)
 	{
 		this.x = x;
 		this.y = y;
 		mainColor = c;
+	}
+	
+	public void setCounter(BombsCounter bombsCounter)
+	{
+		this.bombsCounter = bombsCounter;
 	}
 	
 	public void paint(Graphics g)
@@ -78,6 +84,12 @@ public class Balloon
 	public void left(boolean pressed)
 	{
 		leftPressed = pressed;
+	}
+	
+	public Bomb dropBomb()
+	{
+		Bomb bomb = new Bomb(x, y);
+		return bomb;
 	}
 	
 }

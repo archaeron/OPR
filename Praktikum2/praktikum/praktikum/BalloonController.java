@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.List;
+import java.util.LinkedList;
 
 public class BalloonController extends Applet implements KeyListener, Runnable
 {
@@ -18,15 +18,21 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	private Lava lava;
 	private Thread clockThread;
 	
-	List<Canvas> canvasObjects;
+	LinkedList<Bomb> bombsList;
 	
 	public BalloonController()
 	{
 		addKeyListener(this);
 		balloon1 = new Balloon(100, 50, Color.red);
-		balloon2 = new Balloon(50, 100, Color.blue);
 		counter1 = new BombsCounter(0, 0);
+		balloon1.setCounter(counter1);
+		
+		balloon2 = new Balloon(50, 100, Color.blue);
 		counter2 = new BombsCounter(550, 0);
+		balloon2.setCounter(counter2);
+		
+		bombsList = new LinkedList<Bomb>();
+		
 		lava = new Lava();
 		//canvasObjects = new List<Canvas>();
 		//canvasObjects.add(lava);
@@ -57,6 +63,10 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 		counter2.paint(g);
 		lava.paint(g);
 		System.out.println("repaint");
+		for(Bomb b : bombsList)
+		{
+			b.paint(g);
+		}
 	}
 
 	@Override
@@ -77,6 +87,9 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 			case "A":
 				balloon1.left(true);
 				break;
+			case "C":
+				bombsList.add(balloon1.dropBomb());
+				break;
 			case "I":
 				balloon2.up(true);
 				break;
@@ -88,6 +101,9 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 				break;
 			case "J":
 				balloon2.left(true);
+				break;
+			case "N":
+				bombsList.add(balloon2.dropBomb());
 				break;
 		}
 	}
