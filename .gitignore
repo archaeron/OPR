@@ -1,6 +1,5 @@
 *.class
-*.classpath
-*.applet
+
 
 # Package Files #
 *.jar
