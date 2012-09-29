@@ -32,6 +32,16 @@ public class Lava implements Canvas
 		terrainPolygon = new Polygon(terrainX, terrainY, resolution + 2);
 	}
 	
+	public void checkCollision(Balloon b)
+	{
+		int checkX = b.getXMiddle() / (600 / resolution);
+		if(!(b.getYBottom() < terrainY[checkX]))
+		{
+			b.explode();
+		}
+	}
+	
+	
 	@Override
 	public void paint(Graphics g)
 	{

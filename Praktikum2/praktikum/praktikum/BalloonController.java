@@ -25,13 +25,14 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	public BalloonController()
 	{
 		addKeyListener(this);
-		balloon1 = new Balloon(100, 50, Color.red);
+		balloon1 = new Balloon(100, 50, Color.red, "Joris");
 		counter1 = new BombsCounter(0, 0);
 		balloon1.setCounter(counter1);
-		
-		balloon2 = new Balloon(50, 100, Color.blue);
+
+		balloon2 = new Balloon(50, 100, Color.blue, "Nico");
 		counter2 = new BombsCounter(550, 0);
 		balloon2.setCounter(counter2);
+
 		
 		bombsList = new LinkedList<Bomb>();
 		
@@ -63,11 +64,7 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 		counter1.paint(g);
 		counter2.paint(g);
 		lava.paint(g);
-		System.out.println("repaint");
-		for(Bomb b : bombsList)
-		{
-			b.paint(g);
-		}
+		lava.checkCollision(balloon1);
 	}
 
 	@Override

@@ -19,12 +19,14 @@ public class Balloon
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
 	private BombsCounter bombsCounter;
-	
-	public Balloon(int x, int y, Color c)
+	private String playerName;
+
+	public Balloon(int x, int y, Color c, String playerName)
 	{
 		this.x = x;
 		this.y = y;
 		mainColor = c;
+		this.playerName = playerName;
 	}
 	
 	public void setCounter(BombsCounter bombsCounter)
@@ -60,13 +62,23 @@ public class Balloon
 	
 	public void explode()
 	{
-		Random r = new Random();
-		y = r.nextInt();
-		x = r.nextInt();
-		size = r.nextInt();
+		g.setColor(Color.red);
+		g.fillRect(0, 0, 600, 600);
+		g.setColor(Color.white);
+		g.drawString("Game over, "+playerName+", you lose!!!", 100, 250);
 	}
 	
-	public void up(boolean pressed)
+	public int getYBottom()
+	{
+		return (y + size / 3 * 4) + size / 3;
+	}
+	
+	public int getXMiddle()
+	{
+		return (x + size / 3);
+	}
+	
+	public void up()
 	{
 		upPressed = pressed;
 	}
