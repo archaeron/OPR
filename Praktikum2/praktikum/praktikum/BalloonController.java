@@ -65,6 +65,8 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 		counter2.paint(g);
 		lava.paint(g);
 		lava.checkCollision(balloon1);
+		lava.checkCollision(balloon2);
+		
 		System.out.println("repaint"); 	
 		for(Bomb b : bombsList)
 		{ 	
