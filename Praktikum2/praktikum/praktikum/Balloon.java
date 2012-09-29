@@ -98,9 +98,14 @@ public class Balloon
 		leftPressed = pressed;
 	}
 	
+	public boolean canDropBomb()
+	{
+		return bombsCounter.getBombs() > 0;
+	}
+	
 	public Bomb dropBomb()
 	{
-		if(bombsCounter.getBombs() > 0)
+		if(canDropBomb())
 		{
 			bombsCounter.dropBomb();
 			Bomb bomb = new Bomb(x, y);

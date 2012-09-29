@@ -25,11 +25,11 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	public BalloonController()
 	{
 		addKeyListener(this);
-		balloon1 = new Balloon(100, 50, Color.red, "Joris");
+		balloon1 = new Balloon(75, 50, Color.red, "Joris");
 		counter1 = new BombsCounter(0, 0);
 		balloon1.setCounter(counter1);
 
-		balloon2 = new Balloon(50, 100, Color.blue, "Nico");
+		balloon2 = new Balloon(425, 50, Color.blue, "Nico");
 		counter2 = new BombsCounter(550, 0);
 		balloon2.setCounter(counter2);
 
@@ -93,7 +93,10 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 				balloon1.left(true);
 				break;
 			case "C":
-				bombsList.add(balloon1.dropBomb());
+				if(balloon1.canDropBomb())
+				{
+					bombsList.add(balloon1.dropBomb());
+				}
 				break;
 			case "I":
 				balloon2.up(true);
@@ -108,10 +111,9 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 				balloon2.left(true);
 				break;
 			case "N":
-				Bomb b = balloon2.dropBomb();
-				if(b != null)
+				if(balloon2.canDropBomb())
 				{
-					bombsList.add(b);
+					bombsList.add(balloon2.dropBomb());
 				}
 				break;
 		}
