@@ -25,6 +25,12 @@ public class BombsCounter
 		return points / pointsBombRatio;
 	}
 	
+	public int dropBomb()
+	{
+		points = points - pointsBombRatio;
+		return points;
+	}
+	
 	public void paint(Graphics g)
 	{
 		g.drawRect(x, y, 50, 30);

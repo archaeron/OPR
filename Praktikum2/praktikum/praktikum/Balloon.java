@@ -88,8 +88,16 @@ public class Balloon
 	
 	public Bomb dropBomb()
 	{
-		Bomb bomb = new Bomb(x, y);
-		return bomb;
+		if(bombsCounter.getBombs() > 0)
+		{
+			bombsCounter.dropBomb();
+			Bomb bomb = new Bomb(x, y);
+			return bomb;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 }

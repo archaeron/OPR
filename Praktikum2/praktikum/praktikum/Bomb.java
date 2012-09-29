@@ -3,7 +3,7 @@ package praktikum;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Bomb
+public class Bomb implements Canvas
 {
 
 	private int x;
@@ -15,6 +15,7 @@ public class Bomb
 		this.y = y;
 	}
 	
+	@Override
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.BLACK);
@@ -25,6 +26,13 @@ public class Bomb
 	public void drop()
 	{
 		y = y + 15;
+	}
+
+	@Override
+	public boolean hitsBalloon(Balloon b)
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

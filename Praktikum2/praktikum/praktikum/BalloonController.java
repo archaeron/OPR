@@ -17,6 +17,8 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	private BombsCounter counter2;
 	private Lava lava;
 	private Thread clockThread;
+	public static final int canvasWidth = 600;
+	public static final int canvasHeight = 600;
 	
 	LinkedList<Bomb> bombsList;
 	
@@ -34,8 +36,7 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 		bombsList = new LinkedList<Bomb>();
 		
 		lava = new Lava();
-		//canvasObjects = new List<Canvas>();
-		//canvasObjects.add(lava);
+
 	}
 	
 	public void start()
@@ -103,7 +104,11 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 				balloon2.left(true);
 				break;
 			case "N":
-				bombsList.add(balloon2.dropBomb());
+				Bomb b = balloon2.dropBomb();
+				if(b != null)
+				{
+					bombsList.add(b);
+				}
 				break;
 		}
 	}
