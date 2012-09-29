@@ -14,13 +14,8 @@ public class Balloon
 	private Graphics g;
 	private int size = 100;
 	private int step = 15;
-	private boolean upPressed = false;
-	private boolean downPressed = false;
-	private boolean leftPressed = false;
-	private boolean rightPressed = false;
-	private BombsCounter bombsCounter;
 	private String playerName;
-
+	
 	public Balloon(int x, int y, Color c, String playerName)
 	{
 		this.x = x;
@@ -29,14 +24,8 @@ public class Balloon
 		this.playerName = playerName;
 	}
 	
-	public void setCounter(BombsCounter bombsCounter)
-	{
-		this.bombsCounter = bombsCounter;
-	}
-	
 	public void paint(Graphics g)
 	{
-		move();
 		this.g = g;
 		g.setColor(ropeColor);
 		g.drawLine(x, y + size / 6 * 3, x + size / 3, y + size / 3 * 4);
@@ -45,14 +34,6 @@ public class Balloon
 		g.fillRect(x + size / 3, y + size / 3 * 4, size / 3, size / 3);
 		g.setColor(mainColor);
 		g.fillOval(x, y, size, size);
-	}
-	
-	public void move()
-	{
-		if(upPressed) y = y - step;
-		if(downPressed) y = y + step;
-		if(leftPressed) x = x - step;
-		if(rightPressed) x = x + step;
 	}
 	
 	public void repaint()
@@ -80,28 +61,22 @@ public class Balloon
 	
 	public void up()
 	{
-		upPressed = pressed;
+		y = y - step;
 	}
 
-	public void down(boolean pressed)
+	public void down()
 	{
-		downPressed = pressed;
+		y = y + step;
 	}
 
-	public void right(boolean pressed)
+	public void right()
 	{
-		rightPressed = pressed;
+		x = x + step;
 	}
 
-	public void left(boolean pressed)
+	public void left()
 	{
-		leftPressed = pressed;
-	}
-	
-	public Bomb dropBomb()
-	{
-		Bomb bomb = new Bomb(x, y);
-		return bomb;
+		x = x - step;
 	}
 	
 }

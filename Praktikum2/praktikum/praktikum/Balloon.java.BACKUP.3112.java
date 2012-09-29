@@ -14,13 +14,16 @@ public class Balloon
 	private Graphics g;
 	private int size = 100;
 	private int step = 15;
+<<<<<<< HEAD
 	private boolean upPressed = false;
 	private boolean downPressed = false;
 	private boolean leftPressed = false;
 	private boolean rightPressed = false;
 	private BombsCounter bombsCounter;
+=======
 	private String playerName;
-
+>>>>>>> voila
+	
 	public Balloon(int x, int y, Color c, String playerName)
 	{
 		this.x = x;
@@ -78,7 +81,7 @@ public class Balloon
 		return (x + size / 3);
 	}
 	
-	public void up()
+	public void up(boolean pressed)
 	{
 		upPressed = pressed;
 	}
