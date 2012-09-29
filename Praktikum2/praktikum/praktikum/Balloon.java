@@ -78,7 +78,7 @@ public class Balloon
 		return (x + size / 3);
 	}
 	
-	public void up()
+	public void up(boolean pressed)
 	{
 		upPressed = pressed;
 	}
