@@ -10,6 +10,9 @@ import java.util.LinkedList;
 public class BalloonController extends Applet implements KeyListener, Runnable
 {
 
+	public static final int canvasWidth = 600;
+	public static final int canvasHeight = 600;
+	
 	private static final int sleeptime = 250;
 	private Balloon balloon1;
 	private Balloon balloon2;
@@ -17,10 +20,7 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	private BombsCounter counter2;
 	private Lava lava;
 	private Thread clockThread;
-	public static final int canvasWidth = 600;
-	public static final int canvasHeight = 600;
-	
-	LinkedList<Bomb> bombsList;
+	private LinkedList<Bomb> bombsList;
 	
 	public BalloonController()
 	{
@@ -153,9 +153,12 @@ public class BalloonController extends Applet implements KeyListener, Runnable
 	{
 	    while (clockThread != null) {
 	        repaint();
-	        try {
+	        try
+	        {
 	            clockThread.sleep(sleeptime);
-	        } catch (InterruptedException e){
+	        }
+	        catch (InterruptedException e)
+	        {
 	        }
 	    }
 	}
