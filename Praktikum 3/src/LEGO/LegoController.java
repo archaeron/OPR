@@ -77,10 +77,8 @@ public class LegoController extends Applet implements KeyListener
 			
 			for(int i = legoList.size() - 1; i >= 0; i--)
 			{
-				System.out.println(blackHole.width + " : " + legoList.get(i).length);
 				if(blackHole.width == legoList.get(i).length)
 				{
-					System.out.println(blackHole.posInList);
 					legoList.add(blackHole.posInList, legoList.remove(i));
 					comboBreaker = true;
 					repaint();
@@ -102,10 +100,8 @@ public class LegoController extends Applet implements KeyListener
 			
 			for(int i = blackHole.posInList; i < legoList.size(); i++)
 			{
-				System.out.println(blackHole.width + " : " + legoList.get(i).length);
 				if(blackHole.width == legoList.get(i).length)
 				{
-					System.out.println(blackHole.posInList);
 					legoList.add(blackHole.posInList, legoList.remove(i));
 					comboBreaker = true;
 					repaint();
