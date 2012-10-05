@@ -89,6 +89,31 @@ public class LegoController extends Applet implements KeyListener
 			}
 		}
 	}
+	
+	public void fillBlackHolesInOrder()
+	{
+		boolean comboBreaker = false;
+		for(BlackHole blackHole: blackListOfDeath)
+		{
+			if(comboBreaker)
+			{
+				break;
+			}
+			
+			for(int i = blackHole.posInList; i < legoList.size(); i++)
+			{
+				System.out.println(blackHole.width + " : " + legoList.get(i).length);
+				if(blackHole.width == legoList.get(i).length)
+				{
+					System.out.println(blackHole.posInList);
+					legoList.add(blackHole.posInList, legoList.remove(i));
+					comboBreaker = true;
+					repaint();
+					break;
+				}
+			}
+		}
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e)
@@ -101,6 +126,10 @@ public class LegoController extends Applet implements KeyListener
 		if(KeyEvent.getKeyText(e.getKeyCode()) == "Enter")
 		{
 			fillBlackHoles();
+		}
+		else if(KeyEvent.getKeyText(e.getKeyCode()) == "Space")
+		{
+			fillBlackHolesInOrder();
 		}
 	}
 
