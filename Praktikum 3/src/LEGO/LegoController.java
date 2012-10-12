@@ -65,6 +65,7 @@ public class LegoController extends Applet implements KeyListener
 		return new ArrayList<BlackHole>(listOfBlackHolesOfDeath);
 	}
 	
+	
 	public void fillBlackHoles()
 	{
 		boolean comboBreaker = false;
@@ -109,6 +110,13 @@ public class LegoController extends Applet implements KeyListener
 				}
 			}
 		}
+		makePerfect();
+	}
+	
+	public void makePerfect()
+	{
+		//blackListOfDeath = placeStones();
+	//	System.out.println(blackListOfDeath.size());
 	}
 
 	@Override
