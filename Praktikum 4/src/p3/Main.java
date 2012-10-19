@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class Main extends Applet implements ActionListener
 {
+
+	private static final long serialVersionUID = 1L;
 	private Label vornameLabel = new Label("Vorname");
 	private Label nachnameLabel = new Label("Nachname");
 	private Label adresseLabel = new Label("Adresse");
@@ -70,12 +72,15 @@ public class Main extends Applet implements ActionListener
 	
 	private void changePerson()
 	{
-		if(aktivePerson > persons.size() - 1) aktivePerson = 0;
-		if(aktivePerson < 0) aktivePerson = persons.size() - 1;
-		Person p = persons.get(aktivePerson);
-		vornameInput.setText(p.getVorname());
-		nachnameInput.setText(p.getNachname());
-		adresseInput.setText(p.getAdresse());
+		if(persons.size() > 0)
+		{
+			if(aktivePerson > persons.size() - 1) aktivePerson = 0;
+			if(aktivePerson < 0) aktivePerson = persons.size() - 1;
+			Person p = persons.get(aktivePerson);
+			vornameInput.setText(p.getVorname());
+			nachnameInput.setText(p.getNachname());
+			adresseInput.setText(p.getAdresse());
+		}
 	}
 	
 }
